@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+main {
+  background-color: #dde973;
+}
+
+body {
+  margin: 0;
+  font-family: "Monserrat";
+  background-color: #fcffe0;
+}
+
+div,
+ul,
+nav,
+header,
+footer,
+a,
+li,
+label,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* header section */
+header {
+  background-color: #7bc9ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  container-type: inline-size;
+  container-name: header;
+}
+
+.header__open-nav-button {
+  color: #48e;
+  font-size: 3rem;
+  font-weight: 600;
+  position: absolute;
+  right: 10px;
+}
+.header__checkbox {
+  display: none;
+}
+
+.header__nav {
+  display: none;
+  background-color: #7bc9ff;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  z-index: -1;
+}
+
+.header__checkbox:checked ~ .header__nav {
+  display: flex;
+}
+
+.header__logo {
+  max-width: 100%;
+  width: 64px;
+  margin: 20px 40px;
+}
+
+.header__nav-list {
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.header__nav-item {
+  list-style: none;
+}
+
+.header__nav-item a {
+  color: white;
+}
+
+.header__nav-item a:not(:is(:hover, :active)) {
+  text-decoration: none;
+}
+/* header queries */
+@container header (min-width: 600px) {
+  .header__nav {
+    display: block;
+    position: static;
+    height: auto;
+    width: auto;
+    justify-content: space-between;
+  }
+
+  .header__nav-list {
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    gap: 20px;
+    margin-right: 40px;
+  }
+
+  .header__open-nav-button {
+    display: none;
+  }
+}
+
+/* header ends */
