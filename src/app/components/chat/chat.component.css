@@ -1,0 +1,20 @@
+.mensajes {
+  overflow: scroll;
+}
+
+.boton-enviar {
+  background-color: rgb(5, 197, 250);
+  border: 5px solid rgb(71, 71, 252);
+  border-radius: 15px;
+}
+
+.boton-enviar:hover {
+  background-color: rgb(59, 243, 59);
+  border: 5px solid rgb(1, 29, 74);
+  box-shadow: 0 12px 16px 0 rgba(10, 248, 2, 0.459),
+    0 17px 50px 0 rgba(59, 216, 11, 0.202);
+}
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}

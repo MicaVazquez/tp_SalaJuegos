@@ -1,0 +1,40 @@
+<app-nav-bar></app-nav-bar>
+<body>
+  <div class="wrapper">
+    <div class="form-box">
+      <div class="register">
+        <h2>Registro</h2>
+        <form>
+          <div class="input-box">
+            <input
+              type="text"
+              required
+              name="Email"
+              [(ngModel)]="signupObj.email"
+            />
+            <label>Email</label>
+            <i class="bx bxs-envelope"></i>
+          </div>
+          <div class="input-box">
+            <input
+              type="password"
+              required
+              name="password"
+              [(ngModel)]="signupObj.password"
+            />
+            <label>Contraseña</label>
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+
+          <button class="btn" (click)="onSignUp()">Registrarme</button>
+          <div class="logreg-link">
+            <p>
+              Ya eres miembro?
+              <a href="login" class="register-link">Inicia Sesion</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

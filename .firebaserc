@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "salajuegos-mv"
+  },
+  "targets": {
+    "salajuegos-mv": {
+      "hosting": {
+        "tpsalajuegos": [
+          "salajuegos-mv"
+        ]
+      }
+    }
   }
 }

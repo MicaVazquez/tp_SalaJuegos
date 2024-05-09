@@ -12,6 +12,11 @@ body {
   font-family: "Sanserif";
   background-color: #fcffe0;
 }
+li {
+  color: white;
+  cursor: pointer;
+  font-weight: normal;
+}
 
 div,
 ul,
@@ -81,6 +86,11 @@ header {
 
 .header__nav-item a {
   color: white;
+}
+
+.mail-text {
+  color: white;
+  font-weight: bold;
 }
 
 .header__nav-item a:not(:is(:hover, :active)) {

@@ -1,0 +1,44 @@
+<header class="header">
+  <input type="checkbox" class="header__checkbox" id="open-menu" />
+  <label for="open-menu" class="header__open-nav-button" role="button">=</label>
+  <div class="header__logo-container">
+    <img src="../../../assets/logo-removebg-preview.ico" class="header__logo" />
+  </div>
+  <nav class="header__nav">
+    <ul class="header__nav-list">
+      @if (userMail()) {
+      <li class="header__nav-item" (click)="redirigir('home')">
+        <button mat-flat-button>
+          Home
+          <mat-icon fontIcon="settin"></mat-icon>
+        </button>
+      </li>
+      }
+
+      <li class="header__nav-item" (click)="redirigir('presentacion')">
+        <!-- Quien Soy? -->
+
+        <button mat-flat-button>¿Quien Soy?</button>
+      </li>
+
+      <li class="header__nav-item">|</li>
+
+      @if (!userMail()) {
+      <li class="header__nav-item" (click)="redirigir('login')">
+        Iniciar sesión
+      </li>
+      <li class="header__nav-item" (click)="redirigir('registro')">
+        Registrarme
+      </li>
+      }
+      <label class="mail-text">{{ userMail() }}</label>
+
+      @if (userMail()) {
+
+      <li class="header__nav-item">
+        <a href="">Cerrar Sesion </a>
+      </li>
+      }
+    </ul>
+  </nav>
+</header>

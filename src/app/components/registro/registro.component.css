@@ -30,7 +30,7 @@ body {
   justify-content: center;
 }
 
-.wrapper .form-box .login {
+.wrapper .form-box .register {
   left: 0;
   padding: 0 40px;
 }
@@ -140,7 +140,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.wrapper .info-text.login {
+.wrapper .info-text.register {
   right: 0;
   text-align: right;
   padding: 0 40px 60px 150px;
@@ -154,22 +154,6 @@ body {
   display: flex;
 }
 
-.btn-acceso-rapido {
-  font-size: 12px;
-  margin-top: 5px;
-  position: relative;
-  width: 100%;
-  height: 45px;
-  background: transparent;
-  border: 2px solid #a3ffd6;
-  outline: none;
-  border-radius: 40px;
-  cursor: pointer;
-  color: #fff;
-  font-weight: 600;
-}
-
-/* Cambios generales para dispositivos móviles */
 @media only screen and (max-width: 600px) {
   .wrapper {
     width: 100%;
