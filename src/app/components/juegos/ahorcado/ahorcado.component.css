@@ -1,0 +1,89 @@
+body {
+  background-color: aquamarine;
+  margin: 0;
+  font-family: "Carter One", Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+header {
+  background: #33186b;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  color: white;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  gap: 30px;
+}
+
+#imagen {
+  width: 200px;
+}
+
+#palabra_a_adivinar {
+  height: 3em;
+}
+
+#palabra_a_adivinar span {
+  vertical-align: bottom;
+  font-size: 2em;
+  border-bottom: 2px solid black;
+  width: 30px;
+  text-align: center;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+#letras {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+#letras button {
+  width: 28px;
+  padding: 6px 0;
+  text-align: center;
+}
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}

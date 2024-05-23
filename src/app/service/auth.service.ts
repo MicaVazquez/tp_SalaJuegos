@@ -32,4 +32,8 @@ export class AuthService {
   obtenerUsuarioLogueado() {
     return this.authF.authState;
   }
+
+  obtenerDatosUsuario() {
+    return this.authF.currentUser;
+  }
 }

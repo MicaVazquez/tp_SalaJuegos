@@ -1,0 +1,109 @@
+<app-nav-bar />
+<header>
+  <h1>Mayor o menor?</h1>
+</header>
+<div class="cardbox-shadow col-12">
+  <div class="container d-flex flex-column align-items-center mt-4">
+    <div>
+      @if(!empezado){
+      <img
+        id="imgEmp"
+        src="../../../../assets/mayor-menor/presentacion-cartas.png"
+        class="img-centered smaller-image"
+      />
+      }
+    </div>
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      class="submit_class"
+      id="empezar"
+      [hidden]="empezado"
+      (click)="empezar()"
+    >
+      JUGAR
+      <mat-icon
+        ><span class="material-symbols-outlined"> play_arrow </span></mat-icon
+      >
+    </button>
+  </div>
+
+  <div class="container" [hidden]="!empezado">
+    <div class="card-body text-center">
+      <br />
+      <div class="col-12 text-center">
+        <div class="row">
+          <h6>Puntos:</h6>
+          <h6>{{ puntos }}</h6>
+        </div>
+      </div>
+      <br />
+
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <h2>Carta Anterior</h2>
+          @if(cartaAnterior.src != ''){
+          <img
+            src="{{ cartaAnterior.src }}"
+            style="opacity: 50%"
+            alt="cartaAnt"
+          />
+
+          } @if(cartaAnterior.src == ''){
+          <img
+            src="../../../../assets/mayor-menor/joker.png"
+            style="opacity: 50%"
+            alt="cartaAnt"
+          />
+
+          }
+        </div>
+        <div class="col-4">
+          <h2>Carta Actual</h2>
+          <img src="{{ cartaActual.src }}" alt="carta" />
+        </div>
+      </div>
+      <hr class="text-light" />
+      <div class="row mt-5">
+        <div
+          class="btn-group"
+          role="group"
+          aria-label="Basic mixed styles example"
+        >
+          <button type="button" class="btn btn-danger" (click)="cartaMenor()">
+            MENOR
+          </button>
+          <button type="button" class="btn btn-success" (click)="cartaMayor()">
+            MAYOR
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <mat-card class="mb-4 mt-4">
+        <mat-toolbar color="primary">
+          <span>Estadísticas del Juego</span>
+        </mat-toolbar>
+        <mat-card-content>
+          <p><strong>Fallos:</strong> {{ fallos }}</p>
+          <p><strong>Aciertos:</strong> {{ aciertos }}</p>
+          <p><strong>Intentos:</strong> {{ intentos }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  @if(finalizado) {
+  <div class="d-flex justify-content-center mt-4">
+    <mat-card class="finalizado-card mb-4">
+      <mat-card-content>
+        <p>
+          <strong>Puntuación:</strong> {{ puntos }} |
+          <strong>Juego finalizado!</strong>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  }
+</div>

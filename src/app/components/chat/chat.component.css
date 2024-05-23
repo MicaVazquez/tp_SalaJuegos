@@ -1,20 +1,97 @@
-.mensajes {
+.card-content {
+  width: 300px;
+  height: 500px;
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.card-header {
+  background-color: #86a7fc;
+  border-bottom: 1px solid #3468c0;
+  font-weight: 700;
+  color: white;
+}
+
+.card-footer {
+  margin-top: auto;
+  border-top: 1px solid #7c7c7c;
+}
+
+.msj {
+  background-color: #86a7fc;
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 6px;
+  border-radius: 9px 9px 9px 0;
+  position: relative;
+  z-index: 20;
+  margin: 6px;
+  width: fit-content;
+}
+
+.msj::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  background-color: #86a7fc;
+  bottom: -3px;
+  left: -4px;
+  clip-path: polygon(43% 0, 0% 100%, 100% 68%);
+  z-index: -1;
+}
+
+.self {
+  background-color: #3468c0;
+  margin-left: auto;
+  border-radius: 9px 9px 0 9px;
+}
+.self::before {
+  background-color: #3468c0;
+  clip-path: polygon(57% 0%, 100% 100%, 0% 68%);
+  bottom: -3px;
+  left: auto;
+  right: -4px;
+}
+
+.contenedor-msj {
   overflow: scroll;
+  padding: 0.3 rem;
 }
 
-.boton-enviar {
-  background-color: rgb(5, 197, 250);
-  border: 5px solid rgb(71, 71, 252);
-  border-radius: 15px;
+.contenedor-msj::-webkit-scrollbar {
+  display: none;
 }
 
-.boton-enviar:hover {
-  background-color: rgb(59, 243, 59);
-  border: 5px solid rgb(1, 29, 74);
-  box-shadow: 0 12px 16px 0 rgba(10, 248, 2, 0.459),
-    0 17px 50px 0 rgba(59, 216, 11, 0.202);
+.chat-icon-container {
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  background-color: #86a7fc;
+  border-radius: 100%;
+  box-shadow: 0 0 10px 2px #ababab;
 }
-.example-button-row {
-  display: table-cell;
-  max-width: 600px;
+
+.chat-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.close-icon {
+  position: absolute;
+  right: 0.5rem;
+  top: 0rem;
+  cursor: pointer;
 }

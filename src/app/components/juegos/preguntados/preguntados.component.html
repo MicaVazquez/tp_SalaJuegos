@@ -1,0 +1,12 @@
+<div>
+  @if(currentQuestion) {
+  <h2>{{ currentQuestion.question }}</h2>
+  <div>
+    @for (answer of currentQuestion.answers; track $index) {
+    <button (click)="selectAnswer(answer)">{{ answer }}</button>
+    }
+  </div>
+  <div class="score">Puntuación: {{ puntaje }}</div>
+  <button (click)="onBtn()">Reiniciar Juego</button>
+  }
+</div>

@@ -10,7 +10,7 @@ main {
 body {
   margin: 0;
   font-family: "Sanserif";
-  background-color: #fcffe0;
+  /* background-color: #fcffe0; */
 }
 
 div,
@@ -110,3 +110,8 @@ header {
 }
 
 /* header ends */
+
+.game-icon {
+  width: 100px;
+  height: 100px;
+}

@@ -1,0 +1,23 @@
+.smaller-image {
+  width: 50%;
+  max-width: 300px;
+  height: auto;
+}
+
+.finalizado-card {
+  margin-bottom: 10px;
+}
+
+.img-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  background: #33186b;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: aliceblue;
+}

@@ -1,33 +1,45 @@
-<div
-  class="container d-flex align-items-start justify-content-center bg-dark flex-column"
-  style="height: 75vh; width: 400px; border: solid 2px yellow"
->
-  <h2 class="text-white m-2">CHAT</h2>
-  <div
-    id="mensajes-container"
-    class="card-body h-100 mensajes bg-dark w-100 chat-container"
-    #chatContainer
-  >
-    @for (newMessage of messages; track $index) {
+<div>
+  @if (usuarioLogueado && !mostrarChat) {
+  <mat-icon class="chat-icon-container" (click)="mostrarChat = true">
+    <span class="material-symbols-outlined" (click)="mostrarChat = true">
+      chat
+    </span>
+  </mat-icon>
+  }
+</div>
 
-    <p class="text-white">
-      {{ newMessage }}
+@if(usuarioLogueado && mostrarChat ){
+<mat-card class="card-content">
+  <mat-card-header class="card-header">
+    <mat-card-title
+      >CHAT
+      <mat-icon (click)="mostrarChat = false" class="close-icon"
+        ><span class="material-symbols-outlined"> close </span></mat-icon
+      >
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="contenedor-msj" id="contenedor-msj">
+    @for (msj of messages;track msj) {
+    <p [ngClass]="usuarioLogueado.uid == msj.uid ? 'msj self' : 'msj'">
+      <strong>{{ msj.email }}</strong> <br />{{ msj.texto }} <br />{{
+        formatTimestamp(msj.fecha)
+      }}
     </p>
     }
-  </div>
-  <div class="d-flex flex-row m-2 p-1">
-    <input
-      type="text"
-      class="form-control m-3"
-      style="height: 50px"
-      placeholder="Escribe un mensaje..."
-    />
-    <div class="example-button-row">
-      <button mat-button color="accent">Enviar</button>
-    </div>
-
-    <!-- <button type="button" class="p-2 boton-enviar">
-      Enviar <img src="../../../../assets/img/Send.png" alt="" />
-    </button> -->
-  </div>
-</div>
+  </mat-card-content>
+  <mat-card-footer class="card-footer">
+    <mat-card-actions>
+      <input
+        matInput
+        placeholder="Escribe un mensaje..."
+        [(ngModel)]="newMessage"
+      />
+      <button mat-button (click)="sendMsj()">
+        <mat-icon
+          ><span class="material-symbols-outlined"> send </span></mat-icon
+        >
+      </button>
+    </mat-card-actions>
+  </mat-card-footer>
+</mat-card>
+}

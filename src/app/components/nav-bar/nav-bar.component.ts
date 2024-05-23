@@ -15,7 +15,11 @@ import { AuthService } from '../../service/auth.service';
 export class NavBarComponent {
   userMail = computed(() => this.userDataSvc.mail());
 
-  constructor(private userDataSvc: UserDataService, private router: Router) {}
+  constructor(
+    private userDataSvc: UserDataService,
+    private router: Router,
+    private autSrv: AuthService
+  ) {}
 
   redirigir(path: string) {
     this.router.navigateByUrl(path);

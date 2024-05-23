@@ -19,4 +19,8 @@ export class HomeComponent {
       this.route.navigateByUrl('login');
     }
   }
+
+  redirigir(path: string) {
+    this.route.navigateByUrl(path);
+  }
 }

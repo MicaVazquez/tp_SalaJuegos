@@ -1,0 +1,51 @@
+<app-nav-bar />
+
+<header>
+  <h1>Ahorcado</h1>
+</header>
+<main>
+  <img id="imagen" src="{{ img }}" />
+  <div>
+    <h3 id="resultado"></h3>
+    <p id="palabra_a_adivinar">
+      @if(palabraSecreta){ @for (letras of palabraSecreta; track $index) {
+      <span></span>
+      } }
+    </p>
+    @if(btnVisible) {
+    <button mat-flat-button color="primary" id="jugar" (click)="iniciar()">
+      Obtener palabra
+    </button>
+    }
+
+    <div id="letras">
+      <button class="btn btn-info">a</button>
+      <button class="btn btn-info">b</button>
+      <button class="btn btn-info">c</button>
+      <button class="btn btn-info">d</button>
+      <button class="btn btn-info">e</button>
+      <button class="btn btn-info">f</button>
+      <button class="btn btn-info">g</button>
+      <button class="btn btn-info">h</button>
+      <button class="btn btn-info">i</button>
+      <button class="btn btn-info">j</button>
+      <button class="btn btn-info">k</button>
+      <button class="btn btn-info">l</button>
+      <button class="btn btn-info">m</button>
+      <button class="btn btn-info">n</button>
+      <button class="btn btn-info">ñ</button>
+      <button class="btn btn-info">o</button>
+      <button class="btn btn-info">p</button>
+      <button class="btn btn-info">q</button>
+      <button class="btn btn-info">r</button>
+      <button class="btn btn-info">s</button>
+      <button class="btn btn-info">t</button>
+      <button class="btn btn-info">u</button>
+      <button class="btn btn-info">v</button>
+      <button class="btn btn-info">w</button>
+      <button class="btn btn-info">x</button>
+      <button class="btn btn-info">y</button>
+      <button class="btn btn-info">z</button>
+    </div>
+  </div>
+</main>
