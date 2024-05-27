@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap");
+.boton-container {
+  display: block;
+  margin-bottom: 10px; /* Espacio entre botones */
+}
+
+mat-card-header {
+  color: white;
+  font-family: "Holtwood One SC", serif;
+}
+.header-geografia {
+  background-color: #03aed2;
+}
+
+.header-entretenimiento {
+  background-color: #c65bcf;
+}
+
+.header-ciencia {
+  background-color: #40a578;
+}
+
+.header-deportes {
+  background-color: #ff9a00;
+}
+
+.header-historia {
+  background-color: #ffbf00;
+}

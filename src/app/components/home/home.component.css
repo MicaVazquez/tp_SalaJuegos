@@ -115,3 +115,11 @@ header {
   width: 100px;
   height: 100px;
 }
+
+.btn:hover {
+  border: 3px solid #05d1fe;
+}
+
+.btn {
+  background-color: #333;
+}

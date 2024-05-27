@@ -1,12 +1,45 @@
-<div>
-  @if(currentQuestion) {
-  <h2>{{ currentQuestion.question }}</h2>
-  <div>
-    @for (answer of currentQuestion.answers; track $index) {
-    <button (click)="selectAnswer(answer)">{{ answer }}</button>
-    }
+<app-nav-bar></app-nav-bar>
+<div class="container text-center container-preguntados">
+  <h1>Preguntados</h1>
+  <h2 class="badge bg-secondary text-wrap">
+    RESPUESTAS CORRECTAS: {{ contadorCorrectas }}
+  </h2>
+
+  <mat-card>
+    <mat-card-header [ngClass]="obtenerColorHeader()">
+      <h3>{{ categoriaMapeada }}</h3></mat-card-header
+    >
+    <mat-card-content>
+      <div class="row px-5">
+        <div class="row mx-5 boton-container">
+          <h3>{{ pregunta }}</h3>
+          @for (opcion of opciones; track $index) {
+          <button
+            class="btn btn-primary mt mb-3"
+            [ngClass]="{
+              btn: true,
+              'btn-success': opcion.estado === 'success',
+              'btn-danger': opcion.estado === 'danger',
+              'btn-secondary': opcion.estado === 'primary'
+            }"
+            [disabled]="estadoBtn"
+            (click)="comprobar(opcion)"
+          >
+            {{ opcion.texto }}
+          </button>
+          }
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="time-countdown">
+    <ul>
+      Tiempo restante:
+      {{
+        segundos
+      }}
+      s
+    </ul>
   </div>
-  <div class="score">Puntuación: {{ puntaje }}</div>
-  <button (click)="onBtn()">Reiniciar Juego</button>
-  }
 </div>

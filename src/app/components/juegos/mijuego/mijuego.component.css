@@ -1,0 +1,23 @@
+canvas {
+  border: solid;
+  width: 400;
+  height: 500;
+}
+
+button {
+  position: relative;
+  width: 100px;
+  height: 70px;
+  margin-right: 50px;
+  margin-left: 40px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+}
