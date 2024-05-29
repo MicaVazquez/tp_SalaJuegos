@@ -18,12 +18,6 @@ export class UserDataService {
   constructor(private firestore: AngularFirestore) {
     this.logsCollection = this.firestore.collection<Log>('logs');
     this.logs = this.logsCollection.valueChanges();
-
-    // effect(() => {
-    //   if (this.mail()) {
-    //     localStorage.setItem('mail', this.mail() || '');
-    //   }
-    // });
   }
 
   agregarLog(log: Log) {

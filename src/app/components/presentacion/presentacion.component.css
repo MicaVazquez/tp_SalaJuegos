@@ -126,7 +126,11 @@ h1 {
   }
 }
 
-/* @keyframes llenar-barra80 {
+.texto-blanco {
+  color: white;
+}
+
+@keyframes llenar-barra80 {
   from {
     width: 30%;
     background-color: #26a;
@@ -135,4 +139,4 @@ h1 {
     width: 80%;
     background-color: #48e;
   }
-} */
+}

@@ -27,8 +27,6 @@ export class AuthService {
     return this.authF.signOut();
   }
 
-  getUsers() {}
-
   obtenerUsuarioLogueado() {
     return this.authF.authState;
   }

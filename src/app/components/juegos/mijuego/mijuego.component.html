@@ -1,124 +1,63 @@
 <app-nav-bar></app-nav-bar>
-<header>
-  <h1>Ping pong</h1>
-</header>
-<body>
-  <canvas id="canvas"></canvas>
-  <div class="btn-container"><button></button><button></button></div>
-</body>
-<!-- <section class="container w-50">
-  <section class="text-center mt-2" style="height: 40px">
-    <h1>{{ this.mostrar }}</h1>
-  </section>
+<div class="contenedor-juego">
+  <div class="espacio-juego">
+    <div
+      class="cuadrado-jugador"
+      [style.left.px]="jugadorX"
+      [style.top.px]="jugadorY"
+    ></div>
 
-  <div class="form-control h-100 w-100 bg-primary p-3">
-    <div class="row mb-2">
-      <div class="col bg-white ml-3 mr-3 form-control">
-        {{ this.seleccionJugador }}
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(1)"
-        >
-          1
-        </button>
-      </div>
-
-      <div class="col text-center">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(2)"
-        >
-          2
-        </button>
-      </div>
-
-      <div class="col text-right">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(3)"
-        >
-          3
-        </button>
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(4)"
-        >
-          4
-        </button>
-      </div>
-
-      <div class="col text-center">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(5)"
-        >
-          5
-        </button>
-      </div>
-
-      <div class="col text-right">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(6)"
-        >
-          6
-        </button>
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(7)"
-        >
-          7
-        </button>
-      </div>
-
-      <div class="col text-center">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(8)"
-        >
-          8
-        </button>
-      </div>
-
-      <div class="col text-right">
-        <button
-          class="btn btn-danger btn-lg"
-          style="width: 120px; height: 120px"
-          (click)="this.ElegirNumero(9)"
-        >
-          9
-        </button>
-      </div>
-    </div>
+    @for(enemigo of enemigos; track $index) {
+    <div
+      class="cuadrado-enemigo"
+      [style.left.px]="enemigo.x"
+      [style.top.px]="enemigo.y"
+    ></div>
+    }
+    <div id="puntuacion">{{ puntuacion }}</div>
   </div>
-
-  <div align="center" class="mt-3">
-    <button class="{{ claseBtnIniciar }}" (click)="this.Iniciar()">
-      {{ btnIniciar }}
+  <div id="controles">
+    <button (click)="mover('arriba')" class="btn">
+      <mat-icon
+        ><mat-icon
+          ><span class="material-symbols-outlined">
+            keyboard_double_arrow_up
+          </span></mat-icon
+        >
+      </mat-icon>
     </button>
-    <h1>PUNTOS: {{ this.puntos }}</h1>
+    <div>
+      <button (click)="mover('izquierda')" class="btn">
+        <mat-icon
+          ><mat-icon
+            ><span class="material-symbols-outlined">
+              keyboard_double_arrow_left
+            </span></mat-icon
+          >
+        </mat-icon>
+      </button>
+      <button (click)="mover('derecha')" class="btn">
+        <mat-icon
+          ><mat-icon
+            ><span class="material-symbols-outlined">
+              keyboard_double_arrow_right
+            </span></mat-icon
+          >
+        </mat-icon>
+      </button>
+    </div>
+    <button (click)="mover('abajo')" class="btn">
+      <mat-icon
+        ><span class="material-symbols-outlined">
+          keyboard_double_arrow_down
+        </span></mat-icon
+      >
+    </button>
   </div>
-</section> -->
+
+  @if(juegoTerminado) {
+  <div class="juego-terminado">Juego Terminado</div>
+  } @if(juegoGanado) {
+  <div class="juego-ganado">¡Ganaste!</div>
+  }
+</div>

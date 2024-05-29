@@ -4,11 +4,19 @@ import { Pregunta } from '../../../interfaces/pregunta';
 import { NgClass } from '@angular/common';
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-preguntados',
   standalone: true,
-  imports: [NgClass, NavBarComponent, MatCardModule],
+  imports: [
+    NgClass,
+    NavBarComponent,
+    MatCardModule,
+    MatIcon,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './preguntados.component.html',
   styleUrl: './preguntados.component.css',
 })
@@ -18,14 +26,17 @@ export class PreguntadosComponent {
   questions!: any[];
   preguntaElegida!: Pregunta;
   pregunta!: string;
-
   opciones!: any[];
 
   estado!: boolean;
   estadoBtn: boolean = false;
-  contadorCorrectas!: number;
-  segundos!: number;
-  public interval!: any;
+
+  contadorCorrectas: number = 0;
+  segundos = 60;
+  interval!: any;
+  tiempoFinalizado = false;
+  intervalId: any;
+  cargando: boolean = true;
 
   categoriaMapeada: string = '';
 
@@ -37,30 +48,33 @@ export class PreguntadosComponent {
     history: 'Historia',
   };
 
-  ngOnInit(): void {
-    this.interval = setInterval(() => this.tick(), 1000);
-    this.iniciar();
-  }
-
-  iniciar() {
-    this.estado = true;
+  ngOnInit() {
+    this.iniciarCuentaRegresiva();
     this.elegirAleatoria();
-    this.contadorCorrectas = 0;
-    this.segundos = 60;
   }
 
-  private tick(): void {
-    if (this.estado) {
-      if (this.segundos == 0) {
-        this.estado = false;
-        // this.reinciarSegundos();
+  iniciarCuentaRegresiva() {
+    this.intervalId = setInterval(() => {
+      if (this.segundos > 0) {
+        this.segundos--;
       } else {
-        --this.segundos;
+        this.finalizarTiempo();
       }
-    }
+    }, 1000);
+  }
+
+  finalizarTiempo() {
+    clearInterval(this.intervalId);
+    this.tiempoFinalizado = true;
+    this.estadoBtn = true; // Desactivar botones
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
   }
 
   elegirAleatoria() {
+    this.cargando = true;
     this.estadoBtn = false;
     this.apiService.getData().subscribe((data: any) => {
       const questions = data.questions;
@@ -72,7 +86,6 @@ export class PreguntadosComponent {
         this.pregunta = this.preguntaElegida.question;
         this.categoriaMapeada =
           this.mapeoCategorias[this.preguntaElegida.category];
-        console.log(this.categoriaMapeada);
         this.opciones = [
           ...this.preguntaElegida.incorrectAnswers.map((answer: string) => ({
             texto: answer,
@@ -86,6 +99,7 @@ export class PreguntadosComponent {
 
         this.shuffleArray(this.opciones);
       }
+      this.cargando = false;
     });
   }
 
@@ -112,7 +126,7 @@ export class PreguntadosComponent {
     }
 
     setTimeout(() => {
-      this.iniciar();
+      this.elegirAleatoria();
     }, 1000);
   }
 
@@ -135,5 +149,14 @@ export class PreguntadosComponent {
       default:
         return '';
     }
+  }
+
+  volverAJugar() {
+    this.contadorCorrectas = 0;
+    this.segundos = 60;
+    this.tiempoFinalizado = false;
+    this.estadoBtn = false;
+    this.elegirAleatoria();
+    this.iniciarCuentaRegresiva();
   }
 }

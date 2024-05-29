@@ -1,23 +1,84 @@
-canvas {
-  border: solid;
-  width: 400;
-  height: 500;
-}
-
-button {
-  position: relative;
-  width: 100px;
-  height: 70px;
-  margin-right: 50px;
-  margin-left: 40px;
-}
-
-body {
+#controles {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.btn-container {
+#controles .btn {
+  width: 120px;
+  height: 50px;
+  font-size: 18px;
+  margin: 10px;
+  border: none;
+  background-color: #7e8ef1;
+  color: white;
+  cursor: pointer;
+  border-radius: 25px;
+  box-shadow: 0 4px #999;
+  transition: all 0.3s;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#controles .btn:active {
+  background-color: #615efc;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+#controles div {
+  display: flex;
+  justify-content: space-between;
+  width: 260px;
+}
+
+.btn i {
+  margin-right: 8px;
+}
+
+.contenedor-juego {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+#puntuacion {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.espacio-juego {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  border: 2px solid white;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: #378ce7;
+}
+
+.cuadrado-jugador {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  position: absolute;
+}
+
+.cuadrado-enemigo {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  position: absolute;
+}
+
+.controles {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }

@@ -1,4 +1,10 @@
 import { Routes } from '@angular/router';
+import { logueadoGuard } from './guards/logueado.guard';
+import {
+  canActivate,
+  redirectUnauthorizedTo,
+  redirectLoggedInTo,
+} from '@angular/fire/auth-guard';
 
 export const routes: Routes = [
   {
@@ -58,8 +64,8 @@ export const routes: Routes = [
   {
     path: '**',
     loadComponent: () =>
-      import('./components/login/login.component').then(
-        (m) => m.LoginComponent
+      import('./components/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent
       ),
   },
 ];

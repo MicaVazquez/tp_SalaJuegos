@@ -6,7 +6,7 @@
   </div>
   <nav class="header__nav">
     <ul class="header__nav-list">
-      @if (userMail()) {
+      @if (userLogueado){
       <li class="header__nav-item" (click)="redirigir('home')">
         <button mat-flat-button>
           Home
@@ -25,21 +25,16 @@
 
       <li class="header__nav-item">|</li>
 
-      @if (!userMail()) {
+      @if (!userLogueado ) {
       <li class="header__nav-item" (click)="redirigir('login')">
         Iniciar sesión
       </li>
       <li class="header__nav-item" (click)="redirigir('registro')">
         Registrarme
       </li>
-      }
-      <label class="mail-text">{{ userMail() }}</label>
-
-      @if (userMail()) {
-
-      <li class="header__nav-item">
-        <a href="">Cerrar Sesion </a>
-      </li>
+      } @if (userLogueado) {
+      <label class="mail-text">{{ userLogueado.email }}</label>
+      <li class="header__nav-item" (click)="onClick()">Cerrar Sesion</li>
       }
     </ul>
   </nav>

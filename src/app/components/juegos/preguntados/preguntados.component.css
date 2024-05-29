@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap");
 .boton-container {
   display: block;
-  margin-bottom: 10px; /* Espacio entre botones */
+  margin-bottom: 10px;
 }
 
 mat-card-header {
@@ -26,4 +26,54 @@ mat-card-header {
 
 .header-historia {
   background-color: #ffbf00;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-left {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  width: 80px;
+  justify-content: flex-end;
+}
+
+.timer-icon {
+  margin-right: 5px;
+}
+
+.timer-text {
+  margin: 0;
+  min-width: 20px;
+  text-align: right;
+}
+
+header {
+  background: #33186b;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: aliceblue;
+}
+.finalizado-card {
+  margin-bottom: 10px;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  margin-top: 20vh;
 }

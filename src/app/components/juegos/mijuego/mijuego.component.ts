@@ -1,110 +1,171 @@
-import { Component } from '@angular/core';
-import { Toast } from 'ngx-toastr';
-import { NavBarComponent } from '../../nav-bar/nav-bar.component';
+import { Component, HostListener } from '@angular/core';
 
+import { NavBarComponent } from '../../nav-bar/nav-bar.component';
+import { MatIcon } from '@angular/material/icon';
+
+interface Enemigo {
+  x: number;
+  y: number;
+  direccion: 'abajo' | 'izquierda';
+  velocidad: number;
+}
 @Component({
   selector: 'app-mijuego',
   standalone: true,
-  imports: [NavBarComponent],
+  imports: [NavBarComponent, MatIcon],
   templateUrl: './mijuego.component.html',
   styleUrl: './mijuego.component.css',
 })
 export class MijuegoComponent {
-  private context: CanvasRenderingContext2D | null = null;
+  jugadorX = 180;
+  jugadorY = 180;
+  puntuacion = 0;
+  enemigos: Enemigo[] = [];
+  intervaloJuego: any;
+  intervaloEnemigos: any;
+  juegoTerminado = false;
+  juegoGanado = false;
+  tiempoInicio!: number;
 
-  ngAfterViewInit(): void {
-    this.initCanvas();
-    this.animaciones();
+  ngOnInit(): void {
+    this.iniciarJuego();
   }
 
-  private initCanvas(): void {
-    const canvas = document.querySelector('#canvas') as HTMLCanvasElement;
-    this.context = canvas.getContext('2d');
-    if (!this.context) {
-      console.error('Error al obtener el contexto del canvas');
+  iniciarJuego(): void {
+    this.tiempoInicio = Date.now();
+    this.enemigos = [];
+    this.puntuacion = 0;
+    this.juegoTerminado = false;
+    this.juegoGanado = false;
+
+    // Añadir enemigos iniciales para asegurarse de que haya 4
+    for (let i = 0; i < 4; i++) {
+      this.agregarEnemigo();
+    }
+
+    this.intervaloJuego = setInterval(() => {
+      this.actualizarEnemigos();
+      this.verificarColisiones();
+      this.actualizarPuntuacion();
+      this.verificarCondicionVictoria();
+    }, 50);
+
+    this.intervaloEnemigos = setInterval(() => {
+      if (this.enemigos.length < 5) {
+        this.agregarEnemigo();
+      }
+    }, this.obtenerIntervaloEnemigos());
+  }
+
+  mover(direccion: string): void {
+    if (this.juegoTerminado || this.juegoGanado) return;
+    const paso = 20;
+    switch (direccion) {
+      case 'arriba':
+        this.jugadorY = Math.max(0, this.jugadorY - paso);
+        break;
+      case 'abajo':
+        this.jugadorY = Math.min(360, this.jugadorY + paso);
+        break;
+      case 'izquierda':
+        this.jugadorX = Math.max(0, this.jugadorX - paso);
+        break;
+      case 'derecha':
+        this.jugadorX = Math.min(360, this.jugadorX + paso);
+        break;
     }
   }
 
-  private animaciones(): void {
-    window.requestAnimationFrame(this.animacion.bind(this));
-  }
-
-  private animacion(): void {
-    if (this.context) {
-      // Tu código de animación aquí
-      this.context.clearRect(0, 0, 500, 500); // Limpiar el canvas
-      this.context.fillStyle = 'red';
-      this.context.fillRect(50, 50, 100, 100); // Dibujar un rectángulo rojo como ejemplo
+  agregarEnemigo(): void {
+    const direccion = Math.random() > 0.5 ? 'abajo' : 'izquierda';
+    let x, y;
+    if (direccion === 'abajo') {
+      x = Math.floor(Math.random() * 380);
+      y = 0;
+    } else {
+      x = 400;
+      y = Math.floor(Math.random() * 380);
     }
-    // Llama a requestAnimationFrame nuevamente para continuar el bucle de animación
-    window.requestAnimationFrame(this.animacion.bind(this));
+    const velocidad = this.calcularVelocidadEnemigo();
+    this.enemigos.push({ x, y, direccion, velocidad });
   }
 
-  // public mostrar: string = '';
-  // public secuenciaComparar: string = '';
-  // public puntos: number = 0;
-  // public secuenciaOculta: string = '';
-  // public bloqueoPanel: boolean;
-  // public seleccionJugador: string = '';
-  // public claseBtnIniciar = 'btn btn-success btn-block';
-  // public btnIniciar = 'Iniciar';
-  // constructor() {
-  //   this.bloqueoPanel = true;
-  // }
-  // ngOnInit(): void {}
-  // Iniciar() {
-  //   this.btnIniciar = 'Reiniciar';
-  //   this.claseBtnIniciar = 'btn btn-danger btn-block';
-  //   this.bloqueoPanel = false;
-  //   this.ReiniciarValores();
-  //   this.GenerarNuevaSecuencia();
-  // }
-  // public ReiniciarValores() {
-  //   this.mostrar = '';
-  //   this.secuenciaComparar = '';
-  //   this.puntos = 0;
-  //   this.secuenciaOculta = '';
-  //   this.seleccionJugador = '';
-  // }
-  // public GenerarNuevaSecuencia() {
-  //   this.mostrar = this.secuenciaOculta;
-  //   let recibo = Math.floor(Math.random() * (9 - 1)) + 1;
-  //   this.secuenciaComparar += '' + recibo;
-  //   this.mostrar += recibo + ' - ';
-  //   setTimeout(() => {
-  //     this.secuenciaOculta = this.mostrar;
-  //     this.mostrar = '';
-  //   }, this.secuenciaComparar.length * 1000);
-  // }
-  // public ElegirNumero(numero: number) {
-  //   if (!this.bloqueoPanel) {
-  //     let error = false;
-  //     this.seleccionJugador += numero.toString();
-  //     for (let i = 0; i < this.seleccionJugador.length; i++) {
-  //       if (!(this.seleccionJugador[i] == this.secuenciaComparar[i])) {
-  //         error = true;
-  //         break;
-  //       }
-  //     }
-  //     if (error) {
-  //       this.Error();
-  //     } else {
-  //       if (this.seleccionJugador.length == this.secuenciaComparar.length) {
-  //         this.EsCorrecto();
-  //       }
-  //     }
-  //   }
-  // }
-  // public EsCorrecto() {
-  //   this.seleccionJugador = '';
-  //   this.puntos++;
-  //   alert('Muy bien ya vas: ' + this.puntos); // Mostrar alerta convencional de JavaScript
-  //   setTimeout(() => {
-  //     this.GenerarNuevaSecuencia();
-  //   }, 1000);
-  // }
-  // public Error() {
-  //   alert('Te has equivocado, número de aciertos: ' + this.puntos); // Mostrar alerta convencional de JavaScript
-  //   this.bloqueoPanel = true;
-  // }
+  actualizarEnemigos(): void {
+    this.enemigos = this.enemigos.map((enemigo) => {
+      if (enemigo.direccion === 'abajo') {
+        enemigo.y += enemigo.velocidad;
+        if (enemigo.y > 400) {
+          enemigo.y = 0;
+          enemigo.x = Math.floor(Math.random() * 380);
+        }
+      } else {
+        enemigo.x -= enemigo.velocidad;
+        if (enemigo.x < 0) {
+          enemigo.x = 400;
+          enemigo.y = Math.floor(Math.random() * 380);
+        }
+      }
+      return enemigo;
+    });
+  }
+
+  verificarColisiones(): void {
+    for (let enemigo of this.enemigos) {
+      if (
+        this.jugadorX < enemigo.x + 20 &&
+        this.jugadorX + 40 > enemigo.x &&
+        this.jugadorY < enemigo.y + 20 &&
+        this.jugadorY + 40 > enemigo.y
+      ) {
+        this.terminarJuego(false);
+      }
+    }
+  }
+
+  actualizarPuntuacion(): void {
+    this.puntuacion = Math.floor((Date.now() - this.tiempoInicio) / 1000);
+  }
+
+  verificarCondicionVictoria(): void {
+    if (this.puntuacion >= 60) {
+      this.terminarJuego(true);
+    }
+  }
+
+  terminarJuego(ganado: boolean): void {
+    clearInterval(this.intervaloJuego);
+    clearInterval(this.intervaloEnemigos);
+    this.juegoTerminado = !ganado;
+    this.juegoGanado = ganado;
+  }
+
+  calcularVelocidadEnemigo(): number {
+    return 5;
+  }
+
+  obtenerIntervaloEnemigos(): number {
+    return 1000 + Math.random() * 500;
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowUp':
+        this.mover('arriba');
+        break;
+      case 'ArrowDown':
+        this.mover('abajo');
+        break;
+      case 'ArrowLeft':
+        this.mover('izquierda');
+        break;
+      case 'ArrowRight':
+        this.mover('derecha');
+        break;
+    }
+  }
+
+  moverConBoton(direccion: string): void {
+    this.mover(direccion);
+  }
 }
