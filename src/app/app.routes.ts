@@ -35,36 +35,41 @@ export const routes: Routes = [
       ),
     ...canActivate(() => redirectLoggedInTo(['/home'])),
   },
+  // {
+  //   path: 'ahorcado',
+  //   loadComponent: () =>
+  //     import('./components/juegos/ahorcado/ahorcado.component').then(
+  //       (m) => m.AhorcadoComponent
+  //     ),
+  //   ...canActivate(() => redirectUnauthorizedTo(['/login'])),
+  // },
+  // {
+  //   path: 'mayoromenor',
+  //   loadComponent: () =>
+  //     import('./components/juegos/mayoromenor/mayoromenor.component').then(
+  //       (m) => m.MayoromenorComponent
+  //     ),
+  //   ...canActivate(() => redirectUnauthorizedTo(['/login'])),
+  // },
+  // {
+  //   path: 'preguntados',
+  //   loadComponent: () =>
+  //     import('./components/juegos/preguntados/preguntados.component').then(
+  //       (m) => m.PreguntadosComponent
+  //     ),
+  //   ...canActivate(() => redirectUnauthorizedTo(['/login'])),
+  // },
+  // {
+  //   path: 'mijuego',
+  //   loadComponent: () =>
+  //     import('./components/juegos/mijuego/mijuego.component').then(
+  //       (m) => m.MijuegoComponent
+  //     ),
+  //   ...canActivate(() => redirectUnauthorizedTo(['/login'])),
+  // },
   {
-    path: 'ahorcado',
-    loadComponent: () =>
-      import('./components/juegos/ahorcado/ahorcado.component').then(
-        (m) => m.AhorcadoComponent
-      ),
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
-  },
-  {
-    path: 'mayoromenor',
-    loadComponent: () =>
-      import('./components/juegos/mayoromenor/mayoromenor.component').then(
-        (m) => m.MayoromenorComponent
-      ),
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
-  },
-  {
-    path: 'preguntados',
-    loadComponent: () =>
-      import('./components/juegos/preguntados/preguntados.component').then(
-        (m) => m.PreguntadosComponent
-      ),
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
-  },
-  {
-    path: 'mijuego',
-    loadComponent: () =>
-      import('./components/juegos/mijuego/mijuego.component').then(
-        (m) => m.MijuegoComponent
-      ),
+    path: 'juegos',
+    loadChildren: () => import('./components/juegos.routes').catch(),
     ...canActivate(() => redirectUnauthorizedTo(['/login'])),
   },
   {
