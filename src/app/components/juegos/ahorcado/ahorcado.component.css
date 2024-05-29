@@ -93,7 +93,6 @@ h1 {
   font-size: 36px;
 }
 
-/* Estilos para el main */
 main {
   display: flex;
   flex-direction: column;
@@ -101,12 +100,11 @@ main {
   padding: 20px;
 }
 
-/* Estilos para la imagen */
 #imagen {
   max-width: 100%;
   margin-bottom: 20px;
-  border: 5px solid #850f8d; /* Borde verde */
-  border-radius: 10px; /* Bordes redondeados */
+  border: 5px solid #850f8d;
+  border-radius: 10px;
 }
 
 .letter-buttons-container {
@@ -122,7 +120,7 @@ main {
   width: 40px;
   height: 40px;
   font-size: 18px;
-  border: 1px solid #850f8d;
+  border: 1px solid #c738bd;
   border-radius: 5px;
   background-color: #e49bff;
   color: white;
@@ -135,5 +133,21 @@ main {
 }
 
 .letter-buttons-container button:hover {
-  background-color: #888;
+  background-color: #850f8d;
+}
+
+.rounded-button {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  min-width: auto;
+  min-height: auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }

@@ -2,21 +2,34 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatCard, MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-ahorcado',
   standalone: true,
-  imports: [NavBarComponent, MatButtonModule, MatIconModule],
+  imports: [NavBarComponent, MatButtonModule, MatIconModule, MatCardModule],
   templateUrl: './ahorcado.component.html',
   styleUrl: './ahorcado.component.css',
 })
 export class AhorcadoComponent {
+  mostrarExplicacion: boolean = false;
   palabraSecreta!: string;
+  pista!: string;
   btnVisible: boolean = true;
   cant_aciertos = 0;
   cant_errores = 0;
   img: string = '../../../../assets/ahorcado/0.jpg';
-
+  pistas = [
+    'Fruta roja o verde',
+    'Prenda de vestir',
+    'Dulce pequeño',
+    'Plato de pasta',
+    'Persona que transmite en vivo',
+    'Plataforma de streaming',
+    'Dispositivo para amplificar la voz',
+    'Lo que usas para vestirte',
+    'Objeto para mejorar la visión',
+    'Lugar para hacer ejercicio',
+  ];
   palabras = [
     'manzana',
     'camiseta',
@@ -39,6 +52,7 @@ export class AhorcadoComponent {
     const valor_mas_bajo = 0;
     const valor_al_azar = this.obtenerRamdom(valor_mas_bajo, cant_palabras);
     this.palabraSecreta = this.palabras[valor_al_azar];
+    this.pista = this.pistas[valor_al_azar];
     this.img = '../../../../assets/ahorcado/0.jpg';
     this.btnVisible = false;
 
@@ -86,7 +100,7 @@ export class AhorcadoComponent {
       const source = `../../../../assets/ahorcado/${this.cant_errores}.jpg`;
       this.img = source;
     }
-    //7
+
     if (this.cant_errores >= 7) {
       this.img = `../../../../assets/ahorcado/8.jpg`;
       this.finalizarJuego();

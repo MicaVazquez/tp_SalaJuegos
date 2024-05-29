@@ -15,9 +15,9 @@ export class HomeComponent {
   email = computed(() => this.userData.mail());
 
   constructor(private userData: UserDataService, private route: Router) {
-    if (!this.email()) {
-      this.route.navigateByUrl('login');
-    }
+    // if (!this.email()) {
+    //   this.route.navigateByUrl('login');
+    // }
   }
 
   redirigir(path: string) {
