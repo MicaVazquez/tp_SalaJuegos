@@ -1,4 +1,65 @@
 <app-nav-bar></app-nav-bar>
+<header>
+  <h1>SquareEscape</h1>
+</header>
+
+@if(mostrarIntroduccion){
+
+<div class="card-container">
+  <div class="card">
+    <div class="card-content">
+      <h2>¡Bienvenido a "SquareEscape"!</h2>
+      <p>
+        En este juego, tu objetivo es mover un cuadrado (el jugador) por la
+        pantalla y evitar chocar con otros cuadrados (los enemigos) que aparecen
+        en el camino. Ganarás puntos a medida que sobrevivas más tiempo sin
+        chocar con los enemigos.
+      </p>
+      <h3>Cómo Jugar</h3>
+      <p>
+        Controla el movimiento del jugador utilizando las teclas de dirección:
+        flechas arriba, abajo, izquierda y derecha. Usa estas teclas para mover
+        al jugador y evitar chocar con los enemigos.
+      </p>
+      <p>
+        Los enemigos se mueven automáticamente en dirección descendente o hacia
+        la izquierda. Debes esquivarlos cuidadosamente mientras intentas
+        sobrevivir el mayor tiempo posible.
+      </p>
+      <p>
+        A medida que sobrevivas más tiempo, ganarás puntos. La puntuación se
+        muestra en la parte superior izquierda de la pantalla. El juego continúa
+        hasta que alcances una puntuación de 60 puntos o hasta que choques con
+        un enemigo.
+      </p>
+      <p>
+        Si logras alcanzar una puntuación de 60 puntos, ¡ganarás el juego! Pero
+        si chocas con un enemigo, ¡perderás el juego!
+      </p>
+      <p>
+        Después de ganar o perder, se mostrará un mensaje indicando si ganaste o
+        perdiste. Puedes hacer clic en el botón "Volver a jugar" para intentarlo
+        nuevamente.
+      </p>
+      <button
+        mat-flat-button
+        color="primary"
+        type="button"
+        class="submit_class"
+        id="empezar"
+        (click)="iniciarJuego()"
+      >
+        JUGAR
+        <mat-icon
+          ><span class="material-symbols-outlined"> play_arrow </span></mat-icon
+        >
+      </button>
+    </div>
+  </div>
+</div>
+
+}
+
 <div class="contenedor-juego">
   <div class="espacio-juego">
     <div

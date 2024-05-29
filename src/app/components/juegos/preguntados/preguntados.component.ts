@@ -23,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class PreguntadosComponent {
   constructor(private apiService: ApiService) {}
 
+  mostrarIntroduccion: boolean = true;
   questions!: any[];
   preguntaElegida!: Pregunta;
   pregunta!: string;
@@ -36,9 +37,11 @@ export class PreguntadosComponent {
   interval!: any;
   tiempoFinalizado = false;
   intervalId: any;
-  cargando: boolean = true;
+  cargando: boolean = false;
 
   categoriaMapeada: string = '';
+  mensajeFinal: string = '';
+  icon: string = '';
 
   mapeoCategorias: { [key: string]: string } = {
     geography: 'Geografía',
@@ -48,7 +51,12 @@ export class PreguntadosComponent {
     history: 'Historia',
   };
 
-  ngOnInit() {
+  iniciarJuego() {
+    this.mostrarIntroduccion = false;
+    this.contadorCorrectas = 0;
+    this.segundos = 60;
+    this.tiempoFinalizado = false;
+    this.estadoBtn = false;
     this.iniciarCuentaRegresiva();
     this.elegirAleatoria();
   }
@@ -66,7 +74,8 @@ export class PreguntadosComponent {
   finalizarTiempo() {
     clearInterval(this.intervalId);
     this.tiempoFinalizado = true;
-    this.estadoBtn = true; // Desactivar botones
+    this.estadoBtn = true;
+    this.mostrarMensajeFinal();
   }
 
   ngOnDestroy() {
@@ -89,11 +98,11 @@ export class PreguntadosComponent {
         this.opciones = [
           ...this.preguntaElegida.incorrectAnswers.map((answer: string) => ({
             texto: answer,
-            estado: 'no-seleccionada',
+            estado: 'primary',
           })),
           {
             texto: this.preguntaElegida.correctAnswers,
-            estado: 'no-seleccionada',
+            estado: 'primary',
           },
         ];
 
@@ -115,8 +124,11 @@ export class PreguntadosComponent {
           opcion.texto === this.preguntaElegida.correctAnswers
             ? 'success'
             : 'danger';
-      } else if (op.texto === this.preguntaElegida.correctAnswers) {
-        op.estado = 'success';
+      } else {
+        op.estado =
+          op.texto === this.preguntaElegida.correctAnswers
+            ? 'success'
+            : 'secondary';
       }
       return op;
     });
@@ -152,11 +164,20 @@ export class PreguntadosComponent {
   }
 
   volverAJugar() {
+    this.mostrarIntroduccion = true;
     this.contadorCorrectas = 0;
     this.segundos = 60;
     this.tiempoFinalizado = false;
     this.estadoBtn = false;
-    this.elegirAleatoria();
-    this.iniciarCuentaRegresiva();
+  }
+
+  mostrarMensajeFinal() {
+    if (this.contadorCorrectas >= 10) {
+      this.mensajeFinal = '¡GANASTE! ¡Felicidades!';
+      this.icon = 'mood';
+    } else {
+      this.mensajeFinal = '¡PERDISTE! Inténtalo de nuevo.';
+      this.icon = 'sentiment_dissatisfied';
+    }
   }
 }

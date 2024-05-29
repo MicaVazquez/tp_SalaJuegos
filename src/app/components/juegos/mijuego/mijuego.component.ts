@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { MatIcon } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 interface Enemigo {
   x: number;
@@ -12,7 +13,7 @@ interface Enemigo {
 @Component({
   selector: 'app-mijuego',
   standalone: true,
-  imports: [NavBarComponent, MatIcon],
+  imports: [NavBarComponent, MatIcon, MatButtonModule],
   templateUrl: './mijuego.component.html',
   styleUrl: './mijuego.component.css',
 })
@@ -26,19 +27,16 @@ export class MijuegoComponent {
   juegoTerminado = false;
   juegoGanado = false;
   tiempoInicio!: number;
-
-  ngOnInit(): void {
-    this.iniciarJuego();
-  }
+  mostrarIntroduccion = true;
 
   iniciarJuego(): void {
+    this.mostrarIntroduccion = false;
     this.tiempoInicio = Date.now();
     this.enemigos = [];
     this.puntuacion = 0;
     this.juegoTerminado = false;
     this.juegoGanado = false;
 
-    // Añadir enemigos iniciales para asegurarse de que haya 4
     for (let i = 0; i < 4; i++) {
       this.agregarEnemigo();
     }
