@@ -4,6 +4,30 @@
 </header>
 <div class="cardbox-shadow col-12">
   <div class="container d-flex flex-column align-items-center mt-4">
+    <button
+      mat-icon-button
+      class="rounded-button"
+      color="primary"
+      (click)="mostrarExplicacion = !mostrarExplicacion"
+    >
+      <mat-icon class="material-symbols-outlined">info</mat-icon>
+    </button>
+    @if(mostrarExplicacion){
+    <mat-card class="mb-3">
+      <mat-card-header>
+        <mat-card-title>Juego de Mayor y Menor con cartas</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          En este juego, se mostrará una carta y debes decidir si la próxima
+          carta será mayor o menor en valor numérico. Acumula puntos por cada
+          predicción correcta y pierde intentos por cada predicción incorrecta.
+          El juego finaliza después de un número específico de intentos.
+        </p>
+      </mat-card-content>
+    </mat-card>
+    }
+
     <div>
       @if(!empezado){
       <img

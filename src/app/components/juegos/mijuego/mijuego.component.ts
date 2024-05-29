@@ -3,6 +3,7 @@ import { Component, HostListener } from '@angular/core';
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCard } from '@angular/material/card';
 
 interface Enemigo {
   x: number;
@@ -13,7 +14,7 @@ interface Enemigo {
 @Component({
   selector: 'app-mijuego',
   standalone: true,
-  imports: [NavBarComponent, MatIcon, MatButtonModule],
+  imports: [NavBarComponent, MatIcon, MatButtonModule, MatCard],
   templateUrl: './mijuego.component.html',
   styleUrl: './mijuego.component.css',
 })
@@ -27,15 +28,16 @@ export class MijuegoComponent {
   juegoTerminado = false;
   juegoGanado = false;
   tiempoInicio!: number;
-  mostrarIntroduccion = true;
+  mostrarExplicacion: boolean = false;
+  mostrarBotonJugar = true;
 
   iniciarJuego(): void {
-    this.mostrarIntroduccion = false;
     this.tiempoInicio = Date.now();
     this.enemigos = [];
     this.puntuacion = 0;
     this.juegoTerminado = false;
     this.juegoGanado = false;
+    this.mostrarBotonJugar = false; // Ocultar el botón al iniciar el juego
 
     for (let i = 0; i < 4; i++) {
       this.agregarEnemigo();
@@ -135,6 +137,7 @@ export class MijuegoComponent {
     clearInterval(this.intervaloEnemigos);
     this.juegoTerminado = !ganado;
     this.juegoGanado = ganado;
+    this.mostrarBotonJugar = true;
   }
 
   calcularVelocidadEnemigo(): number {

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { logueadoGuard } from './guards/logueado.guard';
+
 import {
   canActivate,
   redirectUnauthorizedTo,
@@ -13,6 +13,7 @@ export const routes: Routes = [
       import('./components/login/login.component').then(
         (m) => m.LoginComponent
       ),
+    ...canActivate(() => redirectLoggedInTo(['/home'])),
   },
   {
     path: 'presentacion',
@@ -32,6 +33,7 @@ export const routes: Routes = [
       import('./components/registro/registro.component').then(
         (m) => m.RegistroComponent
       ),
+    ...canActivate(() => redirectLoggedInTo(['/home'])),
   },
   {
     path: 'ahorcado',
@@ -39,6 +41,7 @@ export const routes: Routes = [
       import('./components/juegos/ahorcado/ahorcado.component').then(
         (m) => m.AhorcadoComponent
       ),
+    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
   },
   {
     path: 'mayoromenor',
@@ -46,6 +49,7 @@ export const routes: Routes = [
       import('./components/juegos/mayoromenor/mayoromenor.component').then(
         (m) => m.MayoromenorComponent
       ),
+    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
   },
   {
     path: 'preguntados',
@@ -53,6 +57,7 @@ export const routes: Routes = [
       import('./components/juegos/preguntados/preguntados.component').then(
         (m) => m.PreguntadosComponent
       ),
+    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
   },
   {
     path: 'mijuego',
@@ -60,12 +65,13 @@ export const routes: Routes = [
       import('./components/juegos/mijuego/mijuego.component').then(
         (m) => m.MijuegoComponent
       ),
+    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
   },
   {
     path: '**',
     loadComponent: () =>
-      import('./components/not-found/not-found.component').then(
-        (m) => m.NotFoundComponent
+      import('./components/login/login.component').then(
+        (m) => m.LoginComponent
       ),
   },
 ];

@@ -64,6 +64,7 @@ export class MayoromenorComponent {
   aciertos!: number;
   fallos!: number;
   intentos!: number;
+  mostrarExplicacion: boolean = false;
 
   empezar() {
     this.cartasAux = this.shuffle(this.cartas.slice());

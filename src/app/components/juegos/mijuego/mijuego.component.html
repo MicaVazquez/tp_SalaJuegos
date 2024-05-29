@@ -2,11 +2,17 @@
 <header>
   <h1>SquareEscape</h1>
 </header>
-
-@if(mostrarIntroduccion){
-
-<div class="card-container">
-  <div class="card">
+<button
+  mat-icon-button
+  class="rounded-button ms-4"
+  color="primary"
+  (click)="mostrarExplicacion = !mostrarExplicacion"
+>
+  <mat-icon class="material-symbols-outlined">info</mat-icon>
+</button>
+@if(mostrarExplicacion){
+<div class="d-flex justify-content-center my-3 ms-2">
+  <mat-card class="card">
     <div class="card-content">
       <h2>¡Bienvenido a "SquareEscape"!</h2>
       <p>
@@ -41,23 +47,41 @@
         perdiste. Puedes hacer clic en el botón "Volver a jugar" para intentarlo
         nuevamente.
       </p>
-      <button
-        mat-flat-button
-        color="primary"
-        type="button"
-        class="submit_class"
-        id="empezar"
-        (click)="iniciarJuego()"
-      >
-        JUGAR
-        <mat-icon
-          ><span class="material-symbols-outlined"> play_arrow </span></mat-icon
-        >
-      </button>
     </div>
-  </div>
+  </mat-card>
 </div>
-
+} @if(mostrarBotonJugar) {
+<button
+  mat-flat-button
+  color="primary"
+  type="button"
+  class="submit_class ms-4"
+  id="empezar"
+  (click)="iniciarJuego()"
+>
+  JUGAR
+  <mat-icon
+    ><span class="material-symbols-outlined"> play_arrow </span></mat-icon
+  >
+</button>
+} @if(juegoTerminado) {
+<div class="mensaje mensaje-perder mt-5">
+  Perdiste
+  <mat-icon
+    ><span class="material-symbols-outlined">
+      sentiment_very_dissatisfied
+    </span></mat-icon
+  >
+</div>
+} @if(juegoGanado) {
+<div class="mensaje mensaje-ganar mt-5">
+  ¡Ganaste!
+  <mat-icon
+    ><span class="material-symbols-outlined">
+      sentiment_very_satisfied
+    </span></mat-icon
+  >
+</div>
 }
 
 <div class="contenedor-juego">
@@ -115,10 +139,4 @@
       >
     </button>
   </div>
-
-  @if(juegoTerminado) {
-  <div class="juego-terminado">Juego Terminado</div>
-  } @if(juegoGanado) {
-  <div class="juego-ganado">¡Ganaste!</div>
-  }
 </div>
