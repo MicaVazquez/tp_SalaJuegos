@@ -1,95 +1,101 @@
 <app-nav-bar></app-nav-bar>
-<header>
-  <h1>Preguntados</h1>
-</header>
-<div class="container text-center container-preguntados">
-  @if(mostrarIntroduccion) {
-  <mat-card class="intro-card">
-    <mat-card-header>
-      <h2>Bienvenido a Preguntados</h2>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="image-container">
-        <img
-          src="../../../../assets/preguntados/logo-preguntados.png"
-          alt="Preguntados"
-          class="intro-image"
-        />
-      </div>
-      <p>
-        Tienes un minuto para responder bien más de 10 preguntas para ganar.
-        Selecciona la respuesta correcta entre las opciones presentadas. ¡Buena
-        suerte!
-      </p>
-      <button class="btn btn-primary mt-3" (click)="iniciarJuego()">
-        Comenzar
-      </button>
-    </mat-card-content>
-  </mat-card>
-  } @if(cargando) {
-  <div class="spinner-container">
-    <mat-spinner></mat-spinner>
-  </div>
-  } @if(!cargando && !tiempoFinalizado && !mostrarIntroduccion) {
-  <mat-card>
-    <mat-card-header [ngClass]="obtenerColorHeader()" class="header-container">
-      <div class="header-content">
-        <h3 class="header-left">{{ categoriaMapeada }}</h3>
-        <div class="header-right">
-          <mat-icon class="timer-icon">
-            <span class="material-symbols-outlined"> timer </span>
-          </mat-icon>
-          <p class="timer-text">{{ segundos }}</p>
-        </div>
-      </div>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row px-5">
-        <div class="row mx-5 boton-container">
-          <h3>{{ pregunta }}</h3>
-          @for (opcion of opciones; track $index) {
-          <button
-            class="btn btn-primary mt mb-3"
-            [ngClass]="{
-              btn: true,
-              'btn-success': opcion.estado === 'success',
-              'btn-danger': opcion.estado === 'danger',
-              'btn-secondary': opcion.estado === 'secondary'
-            }"
-            [disabled]="estadoBtn"
-            (click)="comprobar(opcion)"
-          >
-            {{ opcion.texto }}
-          </button>
-          }
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  } @if(!cargando && tiempoFinalizado) {
-  <div class="d-flex justify-content-center mt-4">
-    <mat-card class="finalizado-card mb-4">
+
+<main class="principal">
+  <header>
+    <h1>Preguntados</h1>
+  </header>
+  <div class="container text-center container-preguntados">
+    @if(mostrarIntroduccion) {
+    <mat-card class="intro-card">
+      <mat-card-header>
+        <h2>Bienvenido a Preguntados</h2>
+      </mat-card-header>
       <mat-card-content>
+        <div class="image-container">
+          <img
+            src="../../../../assets/preguntados/logo-preguntados.png"
+            alt="Preguntados"
+            class="intro-image"
+          />
+        </div>
         <p>
-          <strong>{{ mensajeFinal }}</strong>
-          <mat-icon
-            ><span class="material-symbols-outlined">
-              {{ this.icon }}
-            </span></mat-icon
-          >
+          Tienes un minuto para responder bien más de 10 preguntas para ganar.
+          Selecciona la respuesta correcta entre las opciones presentadas.
+          ¡Buena suerte!
         </p>
-        <p>
-          <strong>Respuestas correctas:</strong> {{ contadorCorrectas }} |
-          <strong>¡Tiempo finalizado!</strong>
-        </p>
+        <button class="btn btn-primary mt-3" (click)="iniciarJuego()">
+          Comenzar
+        </button>
       </mat-card-content>
     </mat-card>
+    } @if(cargando) {
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+    } @if(!cargando && !tiempoFinalizado && !mostrarIntroduccion) {
+    <mat-card>
+      <mat-card-header
+        [ngClass]="obtenerColorHeader()"
+        class="header-container"
+      >
+        <div class="header-content">
+          <h3 class="header-left">{{ categoriaMapeada }}</h3>
+          <div class="header-right">
+            <mat-icon class="timer-icon">
+              <span class="material-symbols-outlined"> timer </span>
+            </mat-icon>
+            <p class="timer-text">{{ segundos }}</p>
+          </div>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row px-5">
+          <div class="row mx-5 boton-container">
+            <h3>{{ pregunta }}</h3>
+            @for (opcion of opciones; track $index) {
+            <button
+              class="btn btn-primary mt mb-3"
+              [ngClass]="{
+                btn: true,
+                'btn-success': opcion.estado === 'success',
+                'btn-danger': opcion.estado === 'danger',
+                'btn-secondary': opcion.estado === 'secondary'
+              }"
+              [disabled]="estadoBtn"
+              (click)="comprobar(opcion)"
+            >
+              {{ opcion.texto }}
+            </button>
+            }
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    } @if(!cargando && tiempoFinalizado) {
+    <div class="d-flex justify-content-center mt-4">
+      <mat-card class="finalizado-card mb-4">
+        <mat-card-content>
+          <p>
+            <strong>{{ mensajeFinal }}</strong>
+            <mat-icon
+              ><span class="material-symbols-outlined">
+                {{ this.icon }}
+              </span></mat-icon
+            >
+          </p>
+          <p>
+            <strong>Respuestas correctas:</strong> {{ contadorCorrectas }} |
+            <strong>¡Tiempo finalizado!</strong>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <button class="btn btn-primary mt-3" (click)="volverAJugar()">
+      Volver a jugar
+      <mat-icon
+        ><span class="material-symbols-outlined"> play_arrow </span></mat-icon
+      >
+    </button>
+    }
   </div>
-  <button class="btn btn-primary mt-3" (click)="volverAJugar()">
-    Volver a jugar
-    <mat-icon
-      ><span class="material-symbols-outlined"> play_arrow </span></mat-icon
-    >
-  </button>
-  }
-</div>
+</main>

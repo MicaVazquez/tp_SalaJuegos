@@ -1,28 +1,17 @@
-body {
-  background-color: aquamarine;
+* {
   margin: 0;
-  font-family: "Carter One", Arial, Helvetica, sans-serif;
-  min-height: 100vh;
+  padding: 0;
 }
+
 header {
   background: #33186b;
   padding: 10px;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 h1 {
   margin: 0;
   color: white;
-}
-
-main {
-  width: 80%;
-  margin: auto;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.7);
-  display: flex;
-  gap: 30px;
 }
 
 #imagen {
@@ -150,4 +139,12 @@ main {
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.principal {
+  background: linear-gradient(to bottom right, #6fdce3, #fffdb5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -10,7 +10,6 @@ main {
 body {
   margin: 0;
   font-family: "Sanserif";
-  /* background-color: #fcffe0; */
 }
 
 div,
@@ -122,4 +121,12 @@ header {
 
 .btn {
   background-color: #333;
+}
+
+.principal {
+  background: linear-gradient(to bottom right, #6fdce3, #fffdb5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

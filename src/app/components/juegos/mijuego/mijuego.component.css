@@ -66,7 +66,8 @@
 .cuadrado-jugador {
   width: 40px;
   height: 40px;
-  background-color: white;
+  background-image: url("../../../../assets/miJuego/cuadrado.jpg");
+  background-size: cover;
   position: absolute;
 }
 
@@ -153,4 +154,9 @@ header {
 
 .mensaje-perder {
   background-color: #f44336;
+}
+
+.principal {
+  background: linear-gradient(to bottom right, #6fdce3, #fffdb5);
+  min-height: 100vh;
 }

@@ -74,6 +74,11 @@ header {
 
 .spinner-container {
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
+  justify-content: center;
   margin-top: 20vh;
+}
+
+.principal {
+  background: linear-gradient(to bottom right, #6fdce3, #fffdb5);
+  min-height: 100vh;
 }

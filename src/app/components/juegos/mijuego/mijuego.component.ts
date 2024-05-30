@@ -37,7 +37,7 @@ export class MijuegoComponent {
     this.puntuacion = 0;
     this.juegoTerminado = false;
     this.juegoGanado = false;
-    this.mostrarBotonJugar = false; // Ocultar el botón al iniciar el juego
+    this.mostrarBotonJugar = false;
 
     for (let i = 0; i < 4; i++) {
       this.agregarEnemigo();

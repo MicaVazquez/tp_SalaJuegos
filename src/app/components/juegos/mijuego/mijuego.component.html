@@ -1,142 +1,143 @@
 <app-nav-bar></app-nav-bar>
-<header>
-  <h1>SquareEscape</h1>
-</header>
-<button
-  mat-icon-button
-  class="rounded-button ms-4"
-  color="primary"
-  (click)="mostrarExplicacion = !mostrarExplicacion"
->
-  <mat-icon class="material-symbols-outlined">info</mat-icon>
-</button>
-@if(mostrarExplicacion){
-<div class="d-flex justify-content-center my-3 ms-2">
-  <mat-card class="card">
-    <div class="card-content">
-      <h2>¡Bienvenido a "SquareEscape"!</h2>
-      <p>
-        En este juego, tu objetivo es mover un cuadrado (el jugador) por la
-        pantalla y evitar chocar con otros cuadrados (los enemigos) que aparecen
-        en el camino. Ganarás puntos a medida que sobrevivas más tiempo sin
-        chocar con los enemigos.
-      </p>
-      <h3>Cómo Jugar</h3>
-      <p>
-        Controla el movimiento del jugador utilizando las teclas de dirección:
-        flechas arriba, abajo, izquierda y derecha. Usa estas teclas para mover
-        al jugador y evitar chocar con los enemigos.
-      </p>
-      <p>
-        Los enemigos se mueven automáticamente en dirección descendente o hacia
-        la izquierda. Debes esquivarlos cuidadosamente mientras intentas
-        sobrevivir el mayor tiempo posible.
-      </p>
-      <p>
-        A medida que sobrevivas más tiempo, ganarás puntos. La puntuación se
-        muestra en la parte superior izquierda de la pantalla. El juego continúa
-        hasta que alcances una puntuación de 60 puntos o hasta que choques con
-        un enemigo.
-      </p>
-      <p>
-        Si logras alcanzar una puntuación de 60 puntos, ¡ganarás el juego! Pero
-        si chocas con un enemigo, ¡perderás el juego!
-      </p>
-      <p>
-        Después de ganar o perder, se mostrará un mensaje indicando si ganaste o
-        perdiste. Puedes hacer clic en el botón "Volver a jugar" para intentarlo
-        nuevamente.
-      </p>
-    </div>
-  </mat-card>
-</div>
-} @if(mostrarBotonJugar) {
-<button
-  mat-flat-button
-  color="primary"
-  type="button"
-  class="submit_class ms-4"
-  id="empezar"
-  (click)="iniciarJuego()"
->
-  JUGAR
-  <mat-icon
-    ><span class="material-symbols-outlined"> play_arrow </span></mat-icon
-  >
-</button>
-} @if(juegoTerminado) {
-<div class="mensaje mensaje-perder mt-5">
-  Perdiste
-  <mat-icon
-    ><span class="material-symbols-outlined">
-      sentiment_very_dissatisfied
-    </span></mat-icon
-  >
-</div>
-} @if(juegoGanado) {
-<div class="mensaje mensaje-ganar mt-5">
-  ¡Ganaste!
-  <mat-icon
-    ><span class="material-symbols-outlined">
-      sentiment_very_satisfied
-    </span></mat-icon
-  >
-</div>
-}
 
-<div class="contenedor-juego">
-  <div class="espacio-juego">
-    <div
-      class="cuadrado-jugador"
-      [style.left.px]="jugadorX"
-      [style.top.px]="jugadorY"
-    ></div>
-
-    @for(enemigo of enemigos; track $index) {
-    <div
-      class="cuadrado-enemigo"
-      [style.left.px]="enemigo.x"
-      [style.top.px]="enemigo.y"
-    ></div>
-    }
-    <div id="puntuacion">{{ puntuacion }}</div>
+<div class="principal">
+  <header>
+    <h1>SquareEscape</h1>
+  </header>
+  <button
+    mat-icon-button
+    class="rounded-button ms-4"
+    color="primary"
+    (click)="mostrarExplicacion = !mostrarExplicacion"
+  >
+    <mat-icon class="material-symbols-outlined">info</mat-icon>
+  </button>
+  @if(mostrarExplicacion){
+  <div class="d-flex justify-content-center my-3 ms-2">
+    <mat-card class="card">
+      <div class="card-content">
+        <h2>¡Bienvenido a "SquareEscape"!</h2>
+        <p>
+          En este juego, tu objetivo es mover un cuadrado (el jugador) por la
+          pantalla y evitar chocar con otros cuadrados (los enemigos) que
+          aparecen en el camino. Ganarás puntos a medida que sobrevivas más
+          tiempo sin chocar con los enemigos.
+        </p>
+        <h3>Cómo Jugar</h3>
+        <p>
+          Controla el movimiento del jugador utilizando las teclas de dirección:
+          flechas arriba, abajo, izquierda y derecha. Usa estas teclas para
+          mover al jugador y evitar chocar con los enemigos.
+        </p>
+        <p>
+          Los enemigos se mueven automáticamente en dirección descendente o
+          hacia la izquierda. Debes esquivarlos cuidadosamente mientras intentas
+          sobrevivir durante un minuto.
+        </p>
+        <p>
+          El juego continúa durante un minuto o hasta que choques con un
+          enemigo.
+        </p>
+        <p>
+          Si logras que no te toquen, ¡ganarás el juego! Pero si chocas con un
+          enemigo, ¡perderás el juego!
+        </p>
+        <p>
+          Después de ganar o perder, se mostrará un mensaje indicando si ganaste
+          o perdiste. Puedes hacer clic en el botón "Jugar" para intentarlo
+          nuevamente.
+        </p>
+      </div>
+    </mat-card>
   </div>
-  <div id="controles">
-    <button (click)="mover('arriba')" class="btn">
-      <mat-icon
-        ><mat-icon
+  } @if(mostrarBotonJugar) {
+  <button
+    mat-flat-button
+    color="primary"
+    type="button"
+    class="submit_class ms-4"
+    id="empezar"
+    (click)="iniciarJuego()"
+  >
+    JUGAR
+    <mat-icon
+      ><span class="material-symbols-outlined"> play_arrow </span></mat-icon
+    >
+  </button>
+  } @if(juegoTerminado) {
+  <div class="mensaje mensaje-perder mt-5">
+    Perdiste
+    <mat-icon
+      ><span class="material-symbols-outlined">
+        sentiment_very_dissatisfied
+      </span></mat-icon
+    >
+  </div>
+  } @if(juegoGanado) {
+  <div class="mensaje mensaje-ganar mt-5">
+    ¡Ganaste!
+    <mat-icon
+      ><span class="material-symbols-outlined">
+        sentiment_very_satisfied
+      </span></mat-icon
+    >
+  </div>
+  }
+
+  <div class="contenedor-juego">
+    <div class="espacio-juego">
+      <div
+        class="cuadrado-jugador"
+        [style.left.px]="jugadorX"
+        [style.top.px]="jugadorY"
+      ></div>
+
+      @for(enemigo of enemigos; track $index) {
+      <div
+        class="cuadrado-enemigo"
+        [style.left.px]="enemigo.x"
+        [style.top.px]="enemigo.y"
+      ></div>
+      }
+      <div id="puntuacion">{{ puntuacion }}</div>
+    </div>
+    <div id="controles">
+      <button (click)="mover('arriba')" class="btn">
+        <mat-icon
+          ><mat-icon
+            ><span class="material-symbols-outlined">
+              keyboard_double_arrow_up
+            </span></mat-icon
+          >
+        </mat-icon>
+      </button>
+      <div>
+        <button (click)="mover('izquierda')" class="btn">
+          <mat-icon
+            ><mat-icon
+              ><span class="material-symbols-outlined">
+                keyboard_double_arrow_left
+              </span></mat-icon
+            >
+          </mat-icon>
+        </button>
+        <button (click)="mover('derecha')" class="btn">
+          <mat-icon
+            ><mat-icon
+              ><span class="material-symbols-outlined">
+                keyboard_double_arrow_right
+              </span></mat-icon
+            >
+          </mat-icon>
+        </button>
+      </div>
+      <button (click)="mover('abajo')" class="btn">
+        <mat-icon
           ><span class="material-symbols-outlined">
-            keyboard_double_arrow_up
+            keyboard_double_arrow_down
           </span></mat-icon
         >
-      </mat-icon>
-    </button>
-    <div>
-      <button (click)="mover('izquierda')" class="btn">
-        <mat-icon
-          ><mat-icon
-            ><span class="material-symbols-outlined">
-              keyboard_double_arrow_left
-            </span></mat-icon
-          >
-        </mat-icon>
-      </button>
-      <button (click)="mover('derecha')" class="btn">
-        <mat-icon
-          ><mat-icon
-            ><span class="material-symbols-outlined">
-              keyboard_double_arrow_right
-            </span></mat-icon
-          >
-        </mat-icon>
       </button>
     </div>
-    <button (click)="mover('abajo')" class="btn">
-      <mat-icon
-        ><span class="material-symbols-outlined">
-          keyboard_double_arrow_down
-        </span></mat-icon
-      >
-    </button>
   </div>
 </div>
